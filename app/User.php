@@ -26,4 +26,23 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getServerAttribute(){
+        if ($this->type == "server"){
+            return $this;
+        }
+        return $this->Parent;
+    }
+
+    public function parent(){
+        return $this->hasOne('App\User','id','parent_id');
+    }
+
+    public function children(){
+        return $this->hasMany('App\User','parent_id','id');
+    }
+
+    public function bans(){
+        return $this->hasMany('App\ban','banner_id','id');
+    }
 }

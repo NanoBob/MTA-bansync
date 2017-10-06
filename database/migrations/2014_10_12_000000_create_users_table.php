@@ -18,6 +18,13 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+
+            $table->integer('parent_id')->unsigned();
+            $table->foreign('parent_id')->references('id')->on('users');
+            $table->string('type');
+            $table->longText('api_key');
+            $table->boolean('verified');
+
             $table->rememberToken();
             $table->timestamps();
         });
