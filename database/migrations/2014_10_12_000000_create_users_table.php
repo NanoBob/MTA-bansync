@@ -19,10 +19,10 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
 
-            $table->integer('parent_id')->unsigned();
+            $table->integer('parent_id')->unsigned()->nullable();
             $table->foreign('parent_id')->references('id')->on('users');
             $table->string('type');
-            $table->longText('api_key');
+            $table->longText('api_key')->nullable();
             $table->boolean('verified');
 
             $table->rememberToken();

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Foundation\PackageManifest;
 use Illuminate\Http\Request;
+use App\Ban;
+use Carbon\Carbon;
 
 class BanController extends Controller
 {
@@ -11,9 +14,9 @@ class BanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        return app()->server->enforcedBans();
     }
 
     /**
@@ -21,7 +24,7 @@ class BanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
     }
@@ -34,7 +37,19 @@ class BanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+        $ban = new Ban();
+
+        $ban->serial = $request->has("serial") ? $request->get("serial") : null;
+        $ban->ip = $request->has("ip") ? $request->get("ip") : null;
+        $ban->banner_id = app()->server->id;
+        $ban->reason_id = $request->has("reason") ? $request->get("reason") : 1;
+        $ban->details = $request->has("details") ? $request->get("details") : "N/A";
+        $ban->banned_until = $request->has("banned_until") ? $request->get("banned_until") : Carbon::now()->addYears(100);
+
+        $ban->save();
+        return response("success",200);
     }
 
     /**
@@ -43,9 +58,32 @@ class BanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request,$id = -1)
     {
-        //
+        if ($id > 0){
+            return Ban::find($id);
+        }
+        $banSelector = Ban::select();
+        if ( $request->has('ip') ){
+            $banSelector->where('ip',$request->get('ip'));
+        }
+        if ( $request->has('serial') ){
+            $banSelector->where('serial',$request->get('serial'));
+        }
+        $bans = $banSelector->where("banned_until",">",Carbon::now())->get();
+
+        $enforcingBans = [];
+        $server = app()->server;
+        $serverSettings = $server->setting;
+        foreach($bans as $ban){
+            foreach($serverSettings as $setting){
+                if ($setting->server == $ban->server && $setting->reasons[$ban->reason]){
+                    $enforcingBans[count($enforcingBans)] = $ban;
+                    break;
+                }
+            }
+        }
+        return response(json_encode($enforcingBans));
     }
 
     /**
@@ -77,8 +115,13 @@ class BanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
-        //
+        $ban = Ban::find($id);
+        if ($ban->server !== app()->server){
+            abort(403, 'Access denied');
+        }
+        $ban->banned_until = Carbon::now();
+        $ban->save();
     }
 }

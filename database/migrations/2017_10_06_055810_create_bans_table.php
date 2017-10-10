@@ -19,12 +19,16 @@ class CreateBansTable extends Migration
 
             $table->integer('banner_id')->unsigned();
             $table->foreign('banner_id')->references('id')->on('users');
+            $table->integer('server_id')->unsigned();
+            $table->foreign('server_id')->references('id')->on('users');
             $table->integer('ban_reason_id')->unsigned();
             $table->foreign('ban_reason_id')->references('id')->on('ban_reasons');
-            $table->string('serial');
-            $table->string('ip');
-            $table->longText('details');
+            $table->string('serial')->nullable();
+            $table->string('ip')->nullable();
+            $table->string('name')->nullable();
+            $table->longText('details')->nullable();
             $table->dateTime('banned_until');
+            $table->string('appeal_code');
 
             $table->timestamps();
         });

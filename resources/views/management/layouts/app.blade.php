@@ -40,7 +40,11 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    &nbsp;
+                    &nbsp;<li><a href="{{ route('manage.dashboard') }}">Dashboard</a></li>
+                    &nbsp;<li><a href="{{ route('manage.bans') }}">Bans</a></li>
+                    &nbsp;<li><a href="{{ route('manage.appeals') }}">Appeals</a></li>
+                    &nbsp;<li><a href="{{ route('settings.index') }}">Settings</a></li>
+                    &nbsp;<li><a href="{{ route('manage.developers') }}">Developers</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

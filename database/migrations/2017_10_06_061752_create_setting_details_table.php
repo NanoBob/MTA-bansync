@@ -21,7 +21,7 @@ class CreateSettingDetailsTable extends Migration
 
             $table->integer('reason_id')->unsigned();
             $table->foreign('reason_id')->references('id')->on('ban_reasons');
-            $table->longText('value');
+            $table->boolean('value');
 
             $table->timestamps();
         });

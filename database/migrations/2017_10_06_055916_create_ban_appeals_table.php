@@ -18,8 +18,8 @@ class CreateBanAppealsTable extends Migration
 
             $table->integer('ban_id')->unsigned();
             $table->foreign('ban_id')->references('id')->on('bans');
-            $table->integer('banned_id')->unsigned();
-            $table->foreign('banned_id')->references('id')->on('users');
+            $table->integer('server_id')->unsigned();
+            $table->foreign('server_id')->references('id')->on('users');
             $table->longText('content');
 
             $table->timestamps();
