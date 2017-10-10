@@ -41,9 +41,9 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     &nbsp;<li><a href="{{ route('manage.dashboard') }}">Dashboard</a></li>
-                    &nbsp;<li><a href="{{ route('manage.bans') }}">Bans</a></li>
+                    &nbsp;<li><a href="{{ route('manage.bans.index') }}">Bans</a></li>
                     &nbsp;<li><a href="{{ route('manage.appeals') }}">Appeals</a></li>
-                    &nbsp;<li><a href="{{ route('settings.index') }}">Settings</a></li>
+                    &nbsp;<li><a href="{{ route('manage.settings.index') }}">Settings</a></li>
                     &nbsp;<li><a href="{{ route('manage.developers') }}">Developers</a></li>
                 </ul>
 

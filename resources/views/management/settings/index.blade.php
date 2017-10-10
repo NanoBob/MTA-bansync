@@ -20,7 +20,7 @@
                                 <strong>Server</strong>
                             </div>
                             <div class = 'col-xs-6'>
-
+                                <strong>Enabled reasons</strong>
                             </div>
                             <div class = 'col-xs-3'>
                                 <strong>Actions</strong>
@@ -29,14 +29,16 @@
                         @foreach($settings as $setting)
                             <div class = 'row server-row'>
                                 <div class = 'col-xs-3'>
-                                    {{ $setting->server->name }}
+                                    {{ $setting->subject->name }}
                                 </div>
                                 <div class = 'col-xs-6'>
-
+                                    @foreach($setting->detail as $detail)
+                                        {{ $detail->reason->reason }}<br>
+                                    @endforeach
                                 </div>
                                 <div class = 'col-xs-3'>
-                                    <a href = "{{ route("settings.edit",[ "id" => $setting->id ]) }}">edit</a>
-                                    <a href = "{{ route("settings.destroy",[ "id" => $setting->id ]) }}">disable</a>
+                                    <a href = "{{ route("manage.settings.edit",[ "id" => $setting->id ]) }}">edit</a>
+                                    <a href = "{{ route("manage.settings.destroy",[ "id" => $setting->id ]) }}">disable</a>
                                 </div>
                             </div>
                         @endforeach
@@ -62,7 +64,7 @@
 
                                 </div>
                                 <div class = 'col-xs-3'>
-                                    <form id = "createSettingsForm{{$server->id}}" method = "GET" action = "{{ route("settings.create") }}">
+                                    <form id = "createSettingsForm{{$server->id}}" method = "GET" action = "{{ route("manage.settings.create") }}">
                                         <input type = "hidden" name = "server-id" value = "{{ $server->id }}"/>
                                     </form>
                                     <a href="" onclick = "event.preventDefault(); document.getElementById('createSettingsForm{{$server->id}}').submit()">enable</a>

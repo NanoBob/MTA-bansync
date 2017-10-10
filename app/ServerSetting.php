@@ -15,6 +15,10 @@ class ServerSetting extends Model
         return $this->hasOne('App\User','id','server_id');
     }
 
+    public function subject(){
+        return $this->hasOne('App\User','id','subject_id');
+    }
+
     public function getReasonsAttribute(){
         $reasons = [];
         foreach($this->detail as $detail){

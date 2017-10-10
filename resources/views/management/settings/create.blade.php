@@ -14,7 +14,7 @@
                             </div>
                         @endif
 
-                        <form action = "{{ route("settings.store") }}" method = "POST">
+                        <form action = "{{ route("manage.settings.store") }}" method = "POST">
                             {{ csrf_field() }}
                             <input name = "server-id" type = "hidden" value = {{ $settingServer->id }} />
                             <label>Server</label>
@@ -27,7 +27,7 @@
                                     </label>
                                 @endforeach
                             </div>
-                            <input class = "btn btn-lg pull-right" type = "submit" value = "Save"/>
+                            <input class = "btn btn-lg btn-default pull-right" type = "submit" value = "Save"/>
                         </form>
                     </div>
                 </div>

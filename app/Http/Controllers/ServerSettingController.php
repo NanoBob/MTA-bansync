@@ -66,7 +66,7 @@ class ServerSettingController extends Controller
             }
         }
 
-        return redirect(route("settings.index"));
+        return redirect(route("manage.settings.index"));
     }
 
     /**
@@ -112,7 +112,7 @@ class ServerSettingController extends Controller
                 $setting->disable($banReason);
             }
         }
-        return redirect(route("settings.index"));
+        return redirect(route("manage.settings.index"));
     }
 
     /**
@@ -123,6 +123,6 @@ class ServerSettingController extends Controller
      */
     public function destroy($id)
     {
-        return redirect(route("settings.index"));
+        return redirect(route("manage.settings.index"));
     }
 }
