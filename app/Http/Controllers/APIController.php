@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Ban;
 use Carbon\Carbon;
 
-class BanController extends Controller
+class APIController extends Controller
 {
     /**
      * Display a listing of the resource.
