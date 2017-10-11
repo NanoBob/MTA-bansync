@@ -24,8 +24,7 @@
                             trying to connect to the server you are banned to. Enter the key in the input field below
                             and you can appeal your ban. When appealing, remember to be polite.
                         </p>
-                        <form action = "{{route("appeal.create")}}" method = "POST">
-                            {{ csrf_field() }}
+                        <form action = "{{route("appeal.list")}}" method = "GET">
                             <input type = "text" name = "appealCode" placeholder = "Appeal code" />
                             <input type = "submit" />
                         </form>

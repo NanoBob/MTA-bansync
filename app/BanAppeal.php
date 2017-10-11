@@ -18,4 +18,21 @@ class BanAppeal extends Model
     public function state(){
         return $this->hasOne('App\AppealState','id','state_id');
     }
+
+    public function replies(){
+        return $this->hasMany('App\AppealReply','appeal_id','id');
+    }
+
+    public function banned(){
+        return $this->hasOne('App\User','id','banned_id');
+    }
+
+    public function reply($author, $content){
+        $reply = new AppealReply();
+        $reply->author_id = $author->id;
+        $reply->content = $content;
+        $reply->appeal_id = $this->id;
+        $reply->save();
+        $this->touch();
+    }
 }

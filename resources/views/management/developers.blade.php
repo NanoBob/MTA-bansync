@@ -21,7 +21,7 @@
                             <h2>API Key</h2>
                             <p>
                                 The field below contains your API key. This is what is used for your server only to communicate with bansync.
-                                Your API key is private to your server, and should not be discloed to others.<br>
+                                Your API key is private to your server, and should not be disclosed to others.<br>
                                 <strong>API Key: </strong>
                                 <span id = "key" style="cursor:pointer" onclick=" window.clipboardData.setData('{{ $server->api_key }}')">
                                     {{ $server->api_key }}

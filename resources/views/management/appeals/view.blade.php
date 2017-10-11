@@ -44,6 +44,28 @@
                         </form>
                     </div>
                 </div>
+                @foreach($appeal->replies as $reply)
+                    <div class="panel panel-default">
+                        <div class="panel-heading">{{ $reply->author->name }}</div>
+                        <div class="panel-body">
+                            <div class = "form-group">
+                                {{ $reply->content }}
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+                <div class="panel panel-default">
+                    <form method = "POST" action = "{{ route("appeal.reply", [ "id" => $appeal->id ]) }}">
+                        {{ csrf_field() }}
+                        <div class="panel-heading">Ban Appeal</div>
+                        <div class="panel-body">
+                            <div class = "form-group">
+                                <textarea style = "resize:vertical;" class = "form-control" name = "content"></textarea>
+                            </div>
+                            <input class = "btn btn-default btn-lg pull-right" type = "submit" value = "Reply"/>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
