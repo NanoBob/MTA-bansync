@@ -38,7 +38,12 @@
                                 </div>
                                 <div class = 'col-xs-3'>
                                     <a href = "{{ route("manage.settings.edit",[ "id" => $setting->id ]) }}">edit</a>
-                                    <a href = "{{ route("manage.settings.destroy",[ "id" => $setting->id ]) }}">disable</a>
+
+                                    <form action = "{{ route("manage.settings.destroy",[ "id" => $setting->id ]) }}" method = "POST" id = "deleteSetting{{$setting->id}}">
+                                        {{ csrf_field() }}
+                                        {{ method_field("DELETE") }}
+                                        <a onclick = "event.preventDefault(); document.getElementById('deleteSetting{{$setting->id}}').submit()" href = "">disable</a>
+                                    </form>
                                 </div>
                             </div>
                         @endforeach
