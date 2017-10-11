@@ -20,7 +20,7 @@
                                 <strong>Player</strong>
                             </div>
                             <div class = 'col-xs-3'>
-
+                                <strong>Banning server</strong>
                             </div>
                             <div class = 'col-xs-3'>
 
@@ -35,7 +35,7 @@
                                     {{ $ban->name }}
                                 </div>
                                 <div class = 'col-xs-3'>
-
+                                    {{ $ban->server->name }}
                                 </div>
                                 <div class = 'col-xs-3'>
 
