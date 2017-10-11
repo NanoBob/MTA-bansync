@@ -14,4 +14,8 @@ class BanAppeal extends Model
     public function server(){
         return $this->hasOne('App\User','id','server_id');
     }
+
+    public function state(){
+        return $this->hasOne('App\AppealState','id','state_id');
+    }
 }

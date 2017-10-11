@@ -30,11 +30,11 @@ Route::post("/signup","SignupController@submit")->name("signup.submit");
 
 Route::prefix('/manage')->middleware([ 'auth' ])->group(function () {
     Route::get("/",'ManagementController@index')->name("manage.dashboard");
-    Route::get("/appeals",'ManagementController@appeals')->name("manage.appeals");
     Route::get("/developers",'ManagementController@developers')->name("manage.developers");
 
     Route::resource("/settings","ServerSettingController", [ "as" => "manage"]);
     Route::resource("/bans","BanController", [ "as" => "manage"]);
+    Route::resource("/appeals",'AppealController', [ "as" => "manage" ]);
 
 });
 

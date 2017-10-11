@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', "type", 'verified'
     ];
 
     /**
@@ -53,6 +53,10 @@ class User extends Authenticatable
 
     public function appeals(){
         return $this->hasMany('App\BanAppeal','server_id','id');
+    }
+
+    public function clientAppeals(){
+        return $this->hasMany('App\BanAppeal','banned_id','id');
     }
 
     public function settings(){
