@@ -13,7 +13,6 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <a href = "{{ route("manage.bans.create") }}" class = "btn btn-default">Add new ban</a>
 
                         <h2>Bans matching that key:</h2>
                         <div class = 'row'>
