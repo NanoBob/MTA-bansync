@@ -63,13 +63,13 @@ class APIController extends Controller
         $serverSettings = $server->settings;
         foreach($bans as $ban){
             foreach($serverSettings as $setting){
-                if ($setting->server == $ban->server && $setting->reasons[$ban->reason->reason]){
+                if ($setting->subject == $ban->server && isset($setting->reasons[$ban->reason->reason])){
                     $enforcingBans[count($enforcingBans)] = $ban;
                     break;
                 }
             }
         }
-        return response(json_encode($enforcingBans));
+        return response($enforcingBans);
     }
 
     /**

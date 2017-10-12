@@ -89,8 +89,10 @@ class ServerSettingController extends Controller
     public function edit($id)
     {
         $setting = ServerSetting::find($id);
-        $settingServer = $setting->server;
-        return view("management.settings.edit", [ "settingServer" => $settingServer, "setting" => $setting]);
+        if ($setting->server != Auth::user()->server){
+            return redirect(route("manage.settings.index"));
+        }
+        return view("management.settings.edit", [ "setting" => $setting]);
     }
 
     /**
@@ -104,6 +106,9 @@ class ServerSettingController extends Controller
     {
 
         $setting = ServerSetting::find($id);
+        if ($setting->server != Auth::user()->server){
+            return redirect(route("manage.settings.index"));
+        }
 
         foreach( BanReason::all() as $banReason ){
             if ($request->has("reason" . $banReason->id)){
@@ -123,6 +128,11 @@ class ServerSettingController extends Controller
      */
     public function destroy($id)
     {
+        $setting = ServerSetting::find($id);
+        if ($setting->server != Auth::user()->server){
+            return redirect(route("manage.settings.index"));
+        }
+        $setting->delete();
         return redirect(route("manage.settings.index"));
     }
 }

@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ban extends Model
 {
+
+    protected $hidden = [
+        'updated_at', 'ban_reason_id', 'banner_id', 'server_id',
+    ];
+
     public function banner(){
         return $this->hasOne('App\User','id','banner_id');
     }

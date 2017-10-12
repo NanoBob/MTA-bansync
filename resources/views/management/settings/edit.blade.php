@@ -16,10 +16,10 @@
 
                         <form action = "{{ route("manage.settings.update", [ "id" => $setting->id ]) }}" method = "POST">
                             {{ csrf_field() }}
-                            <input name = "server-id" type = "hidden" value = {{ $settingServer->id }} />
+                            <input name = "server-id" type = "hidden" value = {{ $setting->subject->id }} />
                             <label>Server</label>
                             {{ method_field("PATCH") }}
-                            <input class = "form-control" type = "text" readonly value = "{{ $settingServer->name }}"/>
+                            <input class = "form-control" type = "text" readonly value = "{{ $setting->subject->name }}"/>
                             <div class = "form-group">
                                 @foreach(App\BanReason::all() as $banReason)
 

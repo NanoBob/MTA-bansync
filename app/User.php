@@ -25,7 +25,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'email', 'api_key', 'updated_at', 'created_at', 'parent_id', 'id',
+    ];
+
+    protected $appends = [
+        'serverName'
     ];
 
     public function getServerAttribute(){
@@ -33,6 +37,10 @@ class User extends Authenticatable
             return $this;
         }
         return $this->Parent;
+    }
+
+    public function getServerNameAttribute(){
+        return $this->server->name;
     }
 
     public function parent(){
