@@ -40,9 +40,3 @@ Route::prefix('/manage')->middleware([ 'auth', 'server' ])->group(function () {
     Route::resource("/appeals",'AppealController', [ "as" => "manage" ]);
 
 });
-
-Route::prefix('api')->middleware([ 'apikey' ])->group(function () {
-
-    Route::resource("bans","APIController");
-
-});

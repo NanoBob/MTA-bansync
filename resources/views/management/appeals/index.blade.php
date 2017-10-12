@@ -20,7 +20,7 @@
                                 <strong>Player</strong>
                             </div>
                             <div class = 'col-xs-3'>
-                                <strong>Created at</strong>
+                                <strong>Last update</strong>
                             </div>
                             <div class = 'col-xs-3'>
                                 <strong>State</strong>
@@ -35,7 +35,7 @@
                                     {{ $appeal->ban->name }}
                                 </div>
                                 <div class = 'col-xs-3'>
-                                    {{ $appeal->created_at }}
+                                    {{ $appeal->updated_at }}
                                 </div>
                                 <div class = 'col-xs-3'>
                                     {{ $appeal->state->state }}

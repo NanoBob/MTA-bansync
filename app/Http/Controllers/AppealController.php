@@ -19,7 +19,7 @@ class AppealController extends Controller
     {
         $user = Auth::user();
         $server = $user->server;
-        $appeals = $server->appeals()->paginate(15);
+        $appeals = $server->appeals()->orderBy("state_id","ASC")->orderBy("updated_at","ASC")->paginate(15);
 
         return view("management.appeals.index", [ "appeals" => $appeals ]);
     }
@@ -85,7 +85,7 @@ class AppealController extends Controller
     public function edit($id)
     {
         $banAppeal = BanAppeal::find($id);
-        return view("appeals.edit",[ "appeal" => $banAppeal]);
+        return view("management.appeals.view",[ "appeal" => $banAppeal]);
     }
 
     /**

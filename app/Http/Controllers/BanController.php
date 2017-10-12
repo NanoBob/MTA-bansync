@@ -140,7 +140,8 @@ class BanController extends Controller
     public function destroy(Request $request,$id)
     {
         $ban = Ban::find($id);
-        $ban->delete();
+        $ban->banned_until = Carbon::now();
+        $ban->save();
         return redirect(route("manage.bans.index"));
     }
 }

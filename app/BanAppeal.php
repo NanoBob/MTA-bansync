@@ -27,6 +27,7 @@ class BanAppeal extends Model
         return $this->hasOne('App\User','id','banned_id');
     }
 
+
     public function reply($author, $content){
         $reply = new AppealReply();
         $reply->author_id = $author->id;

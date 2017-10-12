@@ -41,7 +41,7 @@
                                 <label>Why should you be unbanned?</label>
                                 <textarea style = "resize:vertical;" class = "form-control" name = "content">{{ $appeal->content }}</textarea>
                             </div>
-                            @if($appeal->banned == Auth::user() )
+                            @if($appeal->banned == Auth::user() && $appeal->state->state == "Open" ) )
                                 <input type = "submit" value = "Edit appeal" class = "btn btn-lg btn-default pull-right"/>
                             @endif
                         </form>
@@ -57,18 +57,20 @@
                         </div>
                     </div>
                 @endforeach
-                <div class="panel panel-default">
-                    <form method = "POST" action = "{{ route("appeal.reply", [ "id" => $appeal->id ]) }}">
-                        {{ csrf_field() }}
-                        <div class="panel-heading">Ban Appeal</div>
-                        <div class="panel-body">
-                            <div class = "form-group">
-                                <textarea style = "resize:vertical;" class = "form-control" name = "content"></textarea>
+                @if( $appeal->state->state == "Open" )
+                    <div class="panel panel-default">
+                        <form method = "POST" action = "{{ route("appeal.reply", [ "id" => $appeal->id ]) }}">
+                            {{ csrf_field() }}
+                            <div class="panel-heading">Reply to Appeal</div>
+                            <div class="panel-body">
+                                <div class = "form-group">
+                                    <textarea style = "resize:vertical;" class = "form-control" name = "content"></textarea>
+                                </div>
+                                <input class = "btn btn-default btn-lg pull-right" type = "submit" value = "Reply"/>
                             </div>
-                            <input class = "btn btn-default btn-lg pull-right" type = "submit" value = "Reply"/>
-                        </div>
-                    </form>
-                </div>
+                        </form>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

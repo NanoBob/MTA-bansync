@@ -20,16 +20,6 @@ class APIController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Request $request)
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -37,8 +27,6 @@ class APIController extends Controller
      */
     public function store(Request $request)
     {
-
-
         $ban = new Ban();
 
         $ban->serial = $request->has("serial") ? $request->get("serial") : null;
@@ -58,55 +46,30 @@ class APIController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request,$id = -1)
+    public function find(Request $request)
     {
-        if ($id > 0){
-            return Ban::find($id);
-        }
         $banSelector = Ban::select();
+        $banSelector->where("banned_until",">",Carbon::now());
         if ( $request->has('ip') ){
-            $banSelector->where('ip',$request->get('ip'));
+            $banSelector->orWhere('ip',$request->get('ip'));
         }
         if ( $request->has('serial') ){
-            $banSelector->where('serial',$request->get('serial'));
+            $banSelector->orWhere('serial',$request->get('serial'));
         }
-        $bans = $banSelector->where("banned_until",">",Carbon::now())->get();
+        $bans = $banSelector->get();
 
         $enforcingBans = [];
         $server = app()->server;
-        $serverSettings = $server->setting;
+        $serverSettings = $server->settings;
         foreach($bans as $ban){
             foreach($serverSettings as $setting){
-                if ($setting->server == $ban->server && $setting->reasons[$ban->reason]){
+                if ($setting->server == $ban->server && $setting->reasons[$ban->reason->reason]){
                     $enforcingBans[count($enforcingBans)] = $ban;
                     break;
                 }
             }
         }
         return response(json_encode($enforcingBans));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**

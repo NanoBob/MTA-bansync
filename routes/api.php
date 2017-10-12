@@ -16,3 +16,13 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::middleware([ 'apikey' ])->group(function () {
+
+    Route::get("bans/index","APIController@index");
+    Route::get("bans/find","APIController@find");
+    Route::post("bans/create","APIController@store");
+    Route::post("bans/destroy","APIController@destroy");
+
+});

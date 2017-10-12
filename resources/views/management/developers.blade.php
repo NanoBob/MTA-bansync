@@ -46,7 +46,7 @@
                                 <code class="lua atom-one-light">
 addEventHandler("onPlayerJoin",getRootElement(),function()
     local player = source
-    fetchRemote("https://bans.nanobob.net/api/bans/-1/?api_key={{ $server->api_key }}ip=" .. getPlayerIP(source) .. "&serial=" .. getPlayerSerial(source),
+    fetchRemote("https://bans.nanobob.net/api/bans/-1/?api_key={{ $server->api_key }}&ip=" .. getPlayerIP(source) .. "&serial=" .. getPlayerSerial(source),
     function(json)
         local result = fromJSON(json)
         local ban = result[1]

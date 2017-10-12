@@ -22,7 +22,7 @@ class ServerSetting extends Model
     public function getReasonsAttribute(){
         $reasons = [];
         foreach($this->detail as $detail){
-            $reasons[$detail->reason] = true;
+            $reasons[$detail->reason->reason] = true;
         }
         return $reasons;
     }
