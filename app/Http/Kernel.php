@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Http\Middleware\VerifyAPIKey;
 use App\Http\Middleware\VerifyServer;
+use App\Http\Middleware\VerifyUserServer;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -61,5 +62,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'apikey' => VerifyAPIKey::class,
         'server' => VerifyServer::class,
+        'userServer' => VerifyUserServer::class,
     ];
 }

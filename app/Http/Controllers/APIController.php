@@ -32,9 +32,11 @@ class APIController extends Controller
         $ban->serial = $request->has("serial") ? $request->get("serial") : null;
         $ban->ip = $request->has("ip") ? $request->get("ip") : null;
         $ban->banner_id = app()->server->id;
-        $ban->reason_id = $request->has("reason") ? $request->get("reason") : 1;
+        $ban->ban_reason_id = $request->has("reason") ? $request->get("reason") : 6;
         $ban->details = $request->has("details") ? $request->get("details") : "N/A";
         $ban->banned_until = $request->has("banned_until") ? $request->get("banned_until") : Carbon::now()->addYears(100);
+        $ban->server_id = app()->server->id;
+        $ban->appeal_code = strtoupper(str_random(8));
 
         $ban->save();
         return response("success",200);
@@ -78,13 +80,23 @@ class APIController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request,$id)
+    public function destroy(Request $request)
     {
-        $ban = Ban::find($id);
-        if ($ban->server !== app()->server){
-            abort(403, 'Access denied');
+        $banSelector = Ban::select();
+        if ($request->has("serial")){
+
         }
-        $ban->banned_until = Carbon::now();
-        $ban->save();
+        if ($request->has("ip")){
+
+        }
+        $bans = $banSelector->get();
+        foreach($bans as $ban){
+            if ($ban->server == app()->server){
+                $ban->banned_until = Carbon::now();
+                $ban->save();
+                return response("success",200);
+            }
+        }
+        abort(403, 'Access denied');
     }
 }

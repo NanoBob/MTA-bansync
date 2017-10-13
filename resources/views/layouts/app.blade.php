@@ -36,7 +36,8 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    &nbsp;
+                    <li><a href = "{{ route("home") }}">Home</a></li>
+                    <li><a href = "{{ route("contributors") }}">Contributors</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -63,7 +64,7 @@
                                         {{ csrf_field() }}
                                     </form>
                                 </li>
-                                @if( Auth::user()->type == "server")
+                                @if( Auth::user()->type == "server" || Auth::user()->server)
                                     <li>
                                         <a href = "{{ route("manage.dashboard") }}">
                                             Server management

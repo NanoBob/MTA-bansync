@@ -46,7 +46,13 @@
                 </div>
                 @foreach($appeal->replies as $reply)
                     <div class="panel panel-default">
-                        <div class="panel-heading">{{ $reply->author->name }}</div>
+                        <div class="panel-heading">
+                            @if($reply->author->type == "server")
+                                {{ $reply->author->name }}
+                            @else
+                                {{$reply->author->server->name}} | {{ $reply->author->name }}
+                            @endif
+                        </div>
                         <div class="panel-body">
                             <div class = "form-group">
                                 {{ $reply->content }}

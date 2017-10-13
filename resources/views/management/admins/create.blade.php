@@ -1,4 +1,4 @@
-@extends('management/layouts.app')
+@extends('management.layouts.app')
 
 @section('content')
     <div class="container">
@@ -23,27 +23,15 @@
                             </div>
                         @endif
 
-                        <form action = "{{ route("manage.bans.store") }}" method = "POST">
+                        <form action = "{{ route("manage.admins.store") }}" method = "POST">
                             {{ csrf_field() }}
                             <div class = "form-group">
                                 <label>Name</label>
                                 <input name = "name" class = "form-control" type = "text" />
-                                <label>IP</label>
-                                <input name = "ip" class = "form-control" type = "text" />
-                                <label>Serial</label>
-                                <input name = "serial" class = "form-control" type = "text" />
-                                <label>Unban at</label>
-                                <input name = "unbanDateTime" class = "form-control" type = "datetime-local" />
-                                <label>Ban reason</label>
-                                <select name = "ban_reason_id" class = "form-control">
-                                    @foreach( App\BanReason::all() as $reason)
-                                        <option value = "{{ $reason->id }}">
-                                            {{ $reason->reason }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                <label>Ban details</label>
-                                <textarea name = "detail" class = "form-control" ></textarea>
+                                <label>Email</label>
+                                <input name = "email" class = "form-control" type = "text" />
+                                <label>Password</label>
+                                <input name = "password" class = "form-control" type = "password" />
                             </div>
                             <input class = "btn btn-default btn-lg pull-right" type = "submit" value = "Save"/>
                         </form>

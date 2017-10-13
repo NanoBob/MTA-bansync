@@ -16,6 +16,12 @@
           href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/lua.min.js"></script>
+    <script defer>hljs.initHighlightingOnLoad();</script>
+    <style>
+        .hljs{
+            background-color:transparent;;
+        }
+    </style>
 </head>
 <body>
 <div id="app">
@@ -40,11 +46,16 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    &nbsp;<li><a href="{{ route('manage.dashboard') }}">Dashboard</a></li>
-                    &nbsp;<li><a href="{{ route('manage.bans.index') }}">Bans</a></li>
-                    &nbsp;<li><a href="{{ route('manage.appeals.index') }}">Appeals</a></li>
-                    &nbsp;<li><a href="{{ route('manage.settings.index') }}">Settings</a></li>
-                    &nbsp;<li><a href="{{ route('manage.developers') }}">Developers</a></li>
+                    <li><a href="{{ route('manage.dashboard') }}">Dashboard</a></li>
+                    <li><a href="{{ route('manage.bans.index') }}">Bans</a></li>
+                    <li><a href="{{ route('manage.appeals.index') }}">Appeals</a></li>
+
+                    @if( Auth::user()->type == "server")
+                        <li><a href="{{ route('manage.settings.index') }}">Settings</a></li>
+                        <li><a href="{{ route('manage.admins.index') }}">Admins</a></li>
+                        <li><a href="{{ route('manage.developers') }}">Developers</a></li>
+                    @endif
+
                 </ul>
 
                 <!-- Right Side Of Navbar -->

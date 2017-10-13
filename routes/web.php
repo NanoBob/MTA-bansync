@@ -16,6 +16,7 @@ Auth::routes();
 Route::get('/', 'StaticPageController@index')->name('home');
 Route::get('/banned', 'StaticPageController@banned')->name('banned');
 Route::get('/developers', 'StaticPageController@developers')->name('developers');
+Route::get('/contributors', 'StaticPageController@contributors')->name('contributors');
 
 Route::group([ "middleware" => [ "auth" ] ],function(){
     Route::get('/appeal', 'PublicAppealController@index')->name('appeal.index');
@@ -31,12 +32,15 @@ Route::get("/signup","SignupController@index")->name("signup.index");
 Route::post("/signup","SignupController@submit")->name("signup.submit");
 
 
-Route::prefix('/manage')->middleware([ 'auth', 'server' ])->group(function () {
+Route::prefix('/manage')->middleware([ 'auth', 'userServer' ])->group(function () {
     Route::get("/",'ManagementController@index')->name("manage.dashboard");
-    Route::get("/developers",'ManagementController@developers')->name("manage.developers");
-
-    Route::resource("/settings","ServerSettingController", [ "as" => "manage"]);
     Route::resource("/bans","BanController", [ "as" => "manage"]);
     Route::resource("/appeals",'AppealController', [ "as" => "manage" ]);
 
+    Route::group([ "middleware" => [ "server"] ],function(){
+        Route::resource("/admins",'AdminController', [ "as" => "manage" ]);
+        Route::get("/developers",'ManagementController@developers')->name("manage.developers");
+        Route::resource("/settings","ServerSettingController", [ "as" => "manage"]);
+
+    });
 });

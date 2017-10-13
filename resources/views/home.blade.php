@@ -27,13 +27,13 @@
                             After you create a server account you can instantly start contributing to the
                             database of banned players. You will also be able to keep the players in the bansync database
                             from playing on your server by implementing the bansync lua resource, or code snippet.<br>
-                            For more details on implementing ban sync on your server click <a href="{{route("developers")}}">here</a>.
+                            More info on how to implement bansync can be found on the management dashboard after you have signed up.
                         </p>
                         <h2>Abuse prevention</h2>
                         <p>
                             In order to prevent abusive use of the system any server can specify which other server's bans
                             they also want to enforce on their server. So make sure you specify those you think can be trusted.<br>
-                            You will also be able to specify for what types of bans you want to ban people. Valid options are:
+                            You will also be able to specify for what types of bans you want to ban people, on a per server basis. Valid options are:
                         </p>
                         <ul>
                             @foreach( App\BanReason::all() as $reason)
