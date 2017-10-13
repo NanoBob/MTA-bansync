@@ -20,7 +20,7 @@
                         <h3>Verified servers</h3>
                         <ul>
                             @foreach($verified as $server)
-                                <li><span style = "background-color:rgb(0,200,0); border-radius:50%; padding:3px;" class = "glyphicon-check"></span> {{$server->name}}</li>
+                                <li><i class="fa fa-check-circle-o" style="color:green" aria-hidden="true"></i> {{$server->name}}</li>
                             @endforeach
                         </ul>
                         <h3>Other servers</h3>

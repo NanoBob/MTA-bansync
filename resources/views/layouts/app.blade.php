@@ -85,4 +85,5 @@
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
 </body>
+<script src="https://use.fontawesome.com/338a073595.js"></script>
 </html>
