@@ -5,6 +5,7 @@ namespace App\Http;
 use App\Http\Middleware\VerifyAPIKey;
 use App\Http\Middleware\VerifyServer;
 use App\Http\Middleware\VerifyUserServer;
+use App\Http\Middleware\VerifyVerified;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -63,5 +64,6 @@ class Kernel extends HttpKernel
         'apikey' => VerifyAPIKey::class,
         'server' => VerifyServer::class,
         'userServer' => VerifyUserServer::class,
+        'verifyVerified' => VerifyVerified::class,
     ];
 }

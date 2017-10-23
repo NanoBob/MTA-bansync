@@ -33,7 +33,8 @@
                         <p>
                             In order to prevent abusive use of the system any server can specify which other server's bans
                             they also want to enforce on their server. So make sure you specify those you think can be trusted.<br>
-                            You will also be able to specify for what types of bans you want to ban people, on a per server basis. Valid options are:
+                            You will also be able to specify for what types of bans you want to ban people, on a per server basis.<br>
+                            Valid options are:
                         </p>
                         <ul>
                             @foreach( App\BanReason::all() as $reason)
@@ -45,8 +46,9 @@
                             As a server you can also apply to become a verified server. A verified server doesn't have
                             more power or abilities than regular servers. The only difference is that a server will be able
                             to mass specify what type of bans to follow for all verified servers.<br>
-                            In order to become verified you must apply <a href="">here</a>. Any currently verified server can
-                            contribute to the voting for server verification.
+                            In order to become verified you must apply <a href="{{ route('verification') }}">here</a>.
+                            Make sure to be logged in as a server account in order to request your verification.
+                            Any currently verified server can contribute to the voting for server verification.
                         </p>
                         <h2>Help I'm banned!</h2>
                         <p>

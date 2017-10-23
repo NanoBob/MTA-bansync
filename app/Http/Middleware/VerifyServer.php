@@ -16,7 +16,7 @@ class VerifyServer
      */
     public function handle($request, Closure $next)
     {
-        if ( Auth::user()->type != "server"){
+        if (! Auth::user() || Auth::user()->type != "server"){
             abort(403, 'Access denied');
         }
         return $next($request);

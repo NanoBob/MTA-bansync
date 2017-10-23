@@ -29,7 +29,7 @@
                         @foreach($settings as $setting)
                             <div class = 'row server-row'>
                                 <div class = 'col-xs-3'>
-                                    {{ $setting->subject->name }}
+                                    @if($setting->subject->verified)<i class="fa fa-check-circle-o" style="color:green" aria-hidden="true"></i>@endif{{ $setting->subject->name }}
                                 </div>
                                 <div class = 'col-xs-6'>
                                     @foreach($setting->detail as $detail)
@@ -63,7 +63,7 @@
                         @foreach($servers as $server)
                             <div class = 'row server-row'>
                                 <div class = 'col-xs-3'>
-                                    {{ $server->name }}
+                                    @if($server->verified)<i class="fa fa-check-circle-o" style="color:green" aria-hidden="true"></i>@endif {{ $server->name }}
                                 </div>
                                 <div class = 'col-xs-6'>
 

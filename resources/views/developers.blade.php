@@ -10,7 +10,7 @@
                     <div class="panel-body">
                         @if (session('status'))
                             <div class="alert alert-success">
-                                Developers
+
                             </div>
                         @endif
                         <p>

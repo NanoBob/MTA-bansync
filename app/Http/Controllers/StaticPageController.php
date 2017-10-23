@@ -27,4 +27,8 @@ class StaticPageController extends Controller
         $remaining = User::where("verified",0)->where("type","server")->get();
         return view('contributors', [ "verified" => $verified, "remaining" => $remaining]);
     }
+
+    public function verification(){
+        return view('verification');
+    }
 }

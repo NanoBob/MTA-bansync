@@ -6,7 +6,7 @@ use Closure;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
-class VerifyUserServer
+class VerifyVerified
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class VerifyUserServer
      */
     public function handle($request, Closure $next)
     {
-        if (! Auth::user() || ! Auth::user()->server){
+        if (! Auth::user() || ! Auth::user()->server || ! Auth::user()->verified){
             abort(403, 'Access denied');
         }
         return $next($request);

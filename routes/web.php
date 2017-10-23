@@ -17,6 +17,12 @@ Route::get('/', 'StaticPageController@index')->name('home');
 Route::get('/banned', 'StaticPageController@banned')->name('banned');
 Route::get('/developers', 'StaticPageController@developers')->name('developers');
 Route::get('/contributors', 'StaticPageController@contributors')->name('contributors');
+Route::get('/verification', 'StaticPageController@verification')->name('verification')->middleware('auth','server');
+
+Route::post("/verification", "VerificationController@store")->name("verification.store")->middleware('auth','server');
+Route::get("/verification/{id}", "VerificationController@view")->name("verification.view")->middleware('auth','userServer');
+Route::post("/verification/{id}/approve", "VerificationController@approve")->name("verification.approve")->middleware('auth','userServer');
+Route::post("/verification/{id}/decline", "VerificationController@decline")->name("verification.decline")->middleware('auth','userServer');
 
 Route::group([ "middleware" => [ "auth" ] ],function(){
     Route::get('/appeal', 'PublicAppealController@index')->name('appeal.index');
