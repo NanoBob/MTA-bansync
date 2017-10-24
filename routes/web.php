@@ -43,6 +43,8 @@ Route::prefix('/manage')->middleware([ 'auth', 'userServer' ])->group(function (
     Route::resource("/bans","BanController", [ "as" => "manage"]);
     Route::resource("/appeals",'AppealController', [ "as" => "manage" ]);
 
+    Route::get("/verifications",'VerificationController@index', [ "middleware" => "verifyVerified" ])->name("manage.verification.list");
+
     Route::group([ "middleware" => [ "server"] ],function(){
         Route::resource("/admins",'AdminController', [ "as" => "manage" ]);
         Route::get("/developers",'ManagementController@developers')->name("manage.developers");

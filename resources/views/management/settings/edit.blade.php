@@ -36,11 +36,11 @@
                                     </label>
                                 @endforeach
                             </div>
-                            <div class = "form-group">
-                                @if($setting->subject->verified)
+                            @if($setting->subject->verified)
+                                <div class = "form-group">
                                     <label class = "form-control"><input type = "checkbox" name = "applyToVerified">Apply to all verified servers</label>
-                                @endif
-                            </div>
+                                </div>
+                            @endif
                             <input class = "btn btn-lg btn-default pull-right" type = "submit" value = "Save"/>
                         </form>
 

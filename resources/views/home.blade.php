@@ -13,6 +13,15 @@
                                 {{ session('status') }}
                             </div>
                         @endif
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
 
                         <p>
                             MTA bansyc is a project to be able to synchronize bans between multiple servers.

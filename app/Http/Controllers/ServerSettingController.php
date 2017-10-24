@@ -65,6 +65,24 @@ class ServerSettingController extends Controller
                 $setting->enable($banReason);
             }
         }
+        if ($request->has("applyToVerified")){
+            foreach(User::where("verified",1)->get() as $verifiedServer){
+                $setting = ServerSetting::where("server_id",Auth::user()->server->id)->where("subject_id",$verifiedServer->id)->first();
+                if (! $setting){
+                    $setting = new ServerSetting();
+                    $setting->subject_id = $verifiedServer->id;
+                    $setting->server_id = Auth::user()->server->id;
+                    $setting->save();
+                }
+                foreach( BanReason::all() as $banReason ){
+                    if ($request->has("reason" . $banReason->id)){
+                        $setting->enable($banReason);
+                    } else {
+                        $setting->disable($banReason);
+                    }
+                }
+            }
+        }
 
         return redirect(route("manage.settings.index"));
     }
@@ -104,7 +122,6 @@ class ServerSettingController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $setting = ServerSetting::find($id);
         if ($setting->server != Auth::user()->server){
             return redirect(route("manage.settings.index"));
@@ -115,6 +132,24 @@ class ServerSettingController extends Controller
                 $setting->enable($banReason);
             } else {
                 $setting->disable($banReason);
+            }
+        }
+        if ($request->has("applyToVerified")){
+            foreach(User::where("verified",1)->get() as $verifiedServer){
+                $setting = ServerSetting::where("server_id",Auth::user()->server->id)->where("subject_id",$verifiedServer->id)->first();
+                if (! $setting){
+                    $setting = new ServerSetting();
+                    $setting->subject_id = $verifiedServer->id;
+                    $setting->server_id = Auth::user()->server->id;
+                    $setting->save();
+                }
+                foreach( BanReason::all() as $banReason ){
+                    if ($request->has("reason" . $banReason->id)){
+                        $setting->enable($banReason);
+                    } else {
+                        $setting->disable($banReason);
+                    }
+                }
             }
         }
         return redirect(route("manage.settings.index"));

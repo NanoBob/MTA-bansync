@@ -27,6 +27,11 @@
                                     </label>
                                 @endforeach
                             </div>
+                            @if($settingServer->verified)
+                                <div class = "form-group">
+                                    <label class = "form-control"><input type = "checkbox" name = "applyToVerified">Apply to all verified servers</label>
+                                </div>
+                            @endif
                             <input class = "btn btn-lg btn-default pull-right" type = "submit" value = "Save"/>
                         </form>
                     </div>

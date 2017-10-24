@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class VerificationRequest extends Model
 {
@@ -33,5 +34,19 @@ class VerificationRequest extends Model
     function accept(){
         $this->server->verified = 1;
         $this->server->save();
+    }
+
+    function getStateAttribute(){
+        if ($this->server->verified){
+            return "accepted";
+        }
+        $createdAt = new Carbon($this->created_at);
+        $now = Carbon::now();
+        $diff = $createdAt->diffInDays($now);
+        if ($diff > 30){
+            return "declined";
+        }    else {
+            return "open";
+        }
     }
 }

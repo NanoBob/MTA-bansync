@@ -71,6 +71,23 @@ class User extends Authenticatable
         return $this->hasMany('App\ServerSetting','server_id','id');
     }
 
+    public function verificationRequests(){
+        return $this->hasMany('App\VerificationRequest','server_id','id');
+    }
+
+    public function getLatestVerificationRequest(){
+        $request = $this->verificationRequests()->orderBy("created_at","DESC")->first();
+        return $request;
+    }
+
+    public function getOpenVerificationRequest(){
+        $request = $this->verificationRequests()->orderBy("created_at","DESC")->first();
+        if ($request && $request->state == "open"){
+            return $request;
+        }
+        return null;
+    }
+
     public function enforcedBans(){
         $bans = Ban::where("banned_until",">",Carbon::now())->get();
 

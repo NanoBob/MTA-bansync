@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('management.layouts.app')
 
 @section('content')
     <div class="container">
@@ -20,12 +20,12 @@
                         @if( Auth::user()->verified && Auth::user() != $request->server )
                             <form action = "{{ route("verification.decline",[ "id" => $request->id ]) }}" method = "POST">
                                 {{csrf_field()}}
-                                <input class = "btn btn-default pull-right" type = "submit" name = "decline" value = "Decline ({{ $request->falseVoteCount() }})">
+                                <input @if($request->state != "open") disabled @endif class = "btn btn-default pull-right" type = "submit" name = "decline" value = "Decline ({{ $request->falseVoteCount() }})">
                             </form>
                             <div class = "pull-right hSpacing"></div>
                             <form action = "{{ route("verification.approve",[ "id" => $request->id ]) }}" method = "POST">
                                 {{csrf_field()}}
-                                <input class = "btn btn-default pull-right" type = "submit" name = "approve" value = "Approve ({{ $request->trueVoteCount() }})">
+                                <input @if($request->state != "open") disabled @endif class = "btn btn-default pull-right" type = "submit" name = "approve" value = "Approve ({{ $request->trueVoteCount() }})">
                             </form>
                         @endif
                     </div>

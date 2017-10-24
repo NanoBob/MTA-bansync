@@ -56,6 +56,9 @@
                         <li><a href="{{ route('manage.developers') }}">Developers</a></li>
                     @endif
 
+                    @if( Auth::user()->server->verified)
+                        <li><a href="{{ route('manage.developers') }}">Verification</a></li>
+                    @endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->

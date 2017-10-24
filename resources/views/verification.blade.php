@@ -8,6 +8,15 @@
                     <div class="panel-heading">Verification request</div>
 
                     <div class="panel-body">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <p>
                             This page is used to request for your server to receive the 'verified' state.
                             Being a verified server means people can include your server in mass specifying settings.
