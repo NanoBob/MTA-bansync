@@ -38,7 +38,7 @@ class StaticPageController extends Controller
         }
         $request = $server->getOpenVerificationRequest();
         if ($request){
-            return view("management.verification.view",[ "id" => $request->id ]);
+            return redirect(route("verification.view",[ "id" => $request->id]));
         }
         $latest = $server->getLatestVerificationRequest();
         if ($latest){

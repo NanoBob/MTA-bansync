@@ -57,7 +57,7 @@
                     @endif
 
                     @if( Auth::user()->server->verified)
-                        <li><a href="{{ route('manage.developers') }}">Verification</a></li>
+                        <li><a href="{{ route('manage.verification.list') }}">Verification</a></li>
                     @endif
                 </ul>
 

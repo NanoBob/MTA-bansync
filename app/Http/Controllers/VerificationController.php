@@ -13,7 +13,7 @@ use App\User;
 class VerificationController extends Controller
 {
     public function index(){
-        return view("management.verification.index", [ "requests" => VerificationRequest::all()->sortBy("state")]);
+        return view("management.verification.index", [ "requests" => VerificationRequest::all()->sortByDesc("state")]);
     }
 
     public function store(Request $request){
