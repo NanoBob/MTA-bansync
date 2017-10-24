@@ -19,15 +19,19 @@ class ServerSettingController extends Controller
     {
         $settings = Auth::user()->server->settings;
         $servers = User::where("type","server")->get();
-        foreach($settings as $setting){
-            foreach($servers as $key => $server){
-                if ($server == $setting->server){
-                    $servers = $servers->except($key);
-                    break;
+        $remainingServers = [];
+        foreach($servers as $server){
+            $found = false;
+            foreach($settings as $setting){
+                if ($setting->subject == $server){
+                    $found = true;
                 }
             }
+            if (! $found){
+                $remainingServers[count($remainingServers)] = $server;
+            }
         }
-        return view('management.settings.index', ["server" => Auth::user(), "settings" => $settings, "servers" => $servers]);
+        return view('management.settings.index', ["server" => Auth::user(), "settings" => $settings, "servers" => $remainingServers]);
     }
 
     /**
