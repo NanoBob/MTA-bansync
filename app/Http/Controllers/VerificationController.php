@@ -22,8 +22,8 @@ class VerificationController extends Controller
         if ($server->verified){
             return redirect()->back()->withErrors([ "You server is already verified. There is no need for you to do this again "]);
         }
-        $request = $server->getOpenVerificationRequest();
-        if ($request){
+        $openRequest = $server->getOpenVerificationRequest();
+        if ($openRequest){
             return view("verification.view",[ "id" => $request->id ]);
         }
         $latest = $server->getLatestVerificationRequest();
