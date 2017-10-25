@@ -8360,3 +8360,7 @@ textarea {
   padding: 3px;
 }
 
+.serial {
+  word-wrap: break-word;
+}
+

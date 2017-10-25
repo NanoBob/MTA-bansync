@@ -38,7 +38,7 @@
                                 <div class = 'col-xs-3'>
                                     {{ $ban->ip }}
                                 </div>
-                                <div class = 'col-xs-3'>
+                                <div class = 'col-xs-3 serial'>
                                     {{ $ban->serial }}
                                 </div>
                                 <div class = 'col-xs-3'>
