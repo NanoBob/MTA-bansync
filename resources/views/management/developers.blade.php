@@ -40,18 +40,28 @@
                                 Make sure the resource has admin access though.
                             </p>
                             <pre>
-                                <code class="lua atom-one-light">addEventHandler("onPlayerJoin",getRootElement(),function()
-    local player = source
-    fetchRemote("https://bans.nanobob.net/api/bans/-1/?api_key={{ $server->api_key }}&ip=" .. getPlayerIP(source) .. "&serial=" .. getPlayerSerial(source),
-    function(json)
-        local result = fromJSON(json)
-        local ban = result[1]
-        if not ban then
-            return
-        end
-        kickPlayer(player,"You were banned by MTA bansync. Please go to https://bans.nanobob.net/banned to appeal your ban. (Appeal code: " .. ban.appeal_code .. ")")
-    end)
-end)</code>
+                                <code class="lua atom-one-light">local function handleJoin(player)
+    local player = source or player
+	local url = "https://bans.nanobob.net/api/bans/find/?api_key={{ $server->api_key }}&ip=" .. getPlayerIP(player) .. "&serial=" .. getPlayerSerial(player)
+	fetchRemote(url,
+		function(json,statusCode)
+			if (json == "ERROR") then
+				return outputDebugString("HTTP Status code: " .. statusCode)
+			end
+			local result = fromJSON(json)
+			local ban = result
+			if not ban then
+				return
+			end
+			kickPlayer(player,"https://bans.nanobob.net/banned (Appeal code: " .. ban.appeal_code .. ")")
+		end)
+
+end
+addEventHandler("onPlayerJoin",getRootElement(),handleJoin)
+
+for _,player in pairs(getElementsByType("player")) do
+	handleJoin(player)
+end</code>
                             </pre>
                             <h2>Documentation</h2>
                             <p>

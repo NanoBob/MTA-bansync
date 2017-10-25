@@ -52,13 +52,20 @@ class APIController extends Controller
     {
         $banSelector = Ban::select();
         $banSelector->where("banned_until",">",Carbon::now());
-        if ( $request->has('ip') ){
-            $banSelector->orWhere('ip',$request->get('ip'));
+        $hasIP = false;
+        if ( $request->has('ip') && $request->get("ip") != "" ){
+            $hasIP = true;
+            $banSelector->where('ip',$request->get('ip'));
         }
         if ( $request->has('serial') ){
-            $banSelector->orWhere('serial',$request->get('serial'));
+            if ($hasIP){
+                $banSelector->orWhere("serial",$request->get("serial"))->where("banned_until",">",Carbon::now());
+            } else {
+                $banSelector->where('serial',$request->get('serial'));
+            }
         }
         $bans = $banSelector->get();
+
 
         $enforcingBans = [];
         $server = app()->server;

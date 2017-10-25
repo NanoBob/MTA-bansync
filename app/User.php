@@ -96,7 +96,7 @@ class User extends Authenticatable
         $serverSettings = $server->settings;
         foreach($bans as $ban){
             foreach($serverSettings as $setting){
-                if ($setting->subject == $ban->server && $setting->reasons[$ban->reason->reason]){
+                if ($setting->subject == $ban->server && key_exists($ban->reason->reason,$setting->reasons) ){
                     $enforcingBans[count($enforcingBans)] = $ban;
                     break;
                 }
