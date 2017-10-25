@@ -1,53 +1,44 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
-
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+<h1>Bansync</h1>
+<p>
+    MTA bansyc is a project to be able to synchronize bans between multiple servers.
 </p>
-
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
-
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](http://patreon.com/taylorotwell):
-
-- **[Vehikl](http://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Styde](https://styde.net)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+<p>
+    The main goal of bansync is to create a community where servers can contribute to keeping
+    each other's servers clear of undesired players.
+</p>
+<h2>Signing up</h2>
+<p>
+    In order to get started you can sign up for a server account <a href="https://bans.nanobob.net/signup">here</a>.
+    After you create a server account you can instantly start contributing to the
+    database of banned players. You will also be able to keep the players in the bansync database
+    from playing on your server by implementing the bansync lua resource, or code snippet.<br>
+    More info on how to implement bansync can be found on the management dashboard after you have signed up.
+</p>
+<h2>Abuse prevention</h2>
+<p>
+    In order to prevent abusive use of the system any server can specify which other server's bans
+    they also want to enforce on their server. So make sure you specify those you think can be trusted.<br>
+    You will also be able to specify for what types of bans you want to ban people, on a per server basis.<br>
+    Valid options are:
+</p>
+<ul>
+    <li>Cheating / hacking</li>
+    <li>Bug abuse</li>
+    <li>Unwanted advertising</li>
+    <li>Abusive behaviour</li>
+    <li>Ban evasion</li>
+    <li>General rule breaking</li>
+</ul>
+<h2>Verified servers</h2>
+<p>
+    As a server you can also apply to become a verified server. A verified server doesn't have
+    more power or abilities than regular servers. The only difference is that a server will be able
+    to mass specify what type of bans to follow for all verified servers.<br>
+    In order to become verified you must apply <a href="https://bans.nanobob.net/verification">here</a>.
+    Make sure to be logged in as a server account in order to request your verification.
+    Any currently verified server can contribute to the voting for server verification.
+</p>
+<h2>Help I'm banned!</h2>
+<p>
+    For more information on what to do when you're banned please click <a href = "https://bans.nanobob.net/banned">here</a>.
+</p>
