@@ -63,6 +63,14 @@
                         <p>
                             For more information on what to do when you're banned please click <a href = "{{route("banned")}}">here</a>.
                         </p>
+                        <h2>Can I trust this?</h2>
+                        <p>
+                            I understand it's difficult to trust some random website with banning players from your server.
+                            Even though you control exactly what kind of bans, and from which servers do or don't get enforced
+                            you would probably still want to know for certain that nothing shady is happening on the website here.
+                            Instead of taking my word for it, you can check for yourself.
+                            The source code for the website can thus be found on <a href = "https://github.com/NanoBob/MTA-bansync">github</a>
+                        </p>
                     </div>
                 </div>
             </div>
