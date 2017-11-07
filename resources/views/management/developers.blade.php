@@ -26,17 +26,8 @@
                             </p>
                             <h2>Implementing</h2>
                             <p>
-                                Implementing Bansync is extremely easy. There are 2 different ways to implement it.
-                            </p>
-                            <h2>Resource</h2>
-                            <p>
-                                You can download the bansync resource <a href = "" target="_blank">here</a>.
-                                Simply put this in your resources folder on your server, grant it admin rights through
-                                the ACL, and start the resource.
-                            </p>
-                            <h2>Code snippet</h2>
-                            <p>
-                                If you do not wish to include the resource, you can add the code below to any of your resources.
+                                Implementing Bansync is extremely easy.
+                                In order to implement it on your server you have to add the code below to any of your resources.
                                 Make sure the resource has admin access though.
                             </p>
                             <pre>
